@@ -1,0 +1,25 @@
+header {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #5F8FB1;
+    color: white;
+}
+
+ul {
+    list-style-type: none
+}
+
+li {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+}
+
+select {
+    width: 127px;
+    height: 30px;
+}

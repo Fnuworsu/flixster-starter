@@ -1,0 +1,39 @@
+.movie-card {
+  padding: 1rem;
+  transition: transform 0.2s ease-in-out;
+  width: 200px;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card .movie-card-image {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.movie-card-content {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.movie-card-content h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    margin: 5px 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-height: 2.8em;
+    overflow: hidden;
+}
+
+.movie-card-content p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    margin: 5px 0;
+}

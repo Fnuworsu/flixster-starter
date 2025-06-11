@@ -1,19 +1,53 @@
-body {
+/* use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* remove default margin */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
 }
 
-button {
-  background-color: #282c34;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+/* enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
 }
 
-button:hover {
-  background-color: #777;
-  color: white;
+body {
+  line-height: 1.5;
+  /* improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
 }
