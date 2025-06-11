@@ -4,11 +4,10 @@ import './Search.css'
 
 export const Search = ({searchQuery}) => {
     const [searchResult, setSearchResult] = useState([])
-    const page = 1
 
     const apiKey = import.meta.env.VITE_API_KEY
     const query = encodeURIComponent(searchQuery)
-    const URL = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&api_key=${apiKey}&page=${page}`
+    const URL = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&api_key=${apiKey}&page=1`
     const imageBaseUrl = "http://image.tmdb.org/t/p/w185"
 
     const getSearchResults= async(url) => {
@@ -33,7 +32,7 @@ export const Search = ({searchQuery}) => {
             return <div className="no-results">No movies found for "{searchQuery}"</div>
         }
 
-        // filter out movies with zero ratings
+        // Filter out movies with zero ratings
         const filteredResults = searchResult.filter(res => res.vote_average > 0)
         if (searchQuery && filteredResults.length === 0) {
             return <div className="no-results">No movies with ratings found for "{searchQuery}"</div>
@@ -44,7 +43,7 @@ export const Search = ({searchQuery}) => {
                 {searchQuery && filteredResults.map(res => (
                     <MovieCard
                         key={res.id}
-                        imageUrl={res.poster_path ? `${imageBaseUrl}${res.poster_path}` : 'https://via.placeholder.com/185x278?text=No+Image'}
+                        imageUrl={`${imageBaseUrl}${res.poster_path}`}
                         title={res.title}
                         rating={res.vote_average}
                     />

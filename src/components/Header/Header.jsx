@@ -1,11 +1,24 @@
 import "./Header.css"
+import { useState } from "react"
 
-export const Header = ({ setSearchQuery }) => {
+export const Header = ({ setSearchQuery, setSortOption }) => {
+    const [sortBy, setSortBy] = useState("Sort by")
+
     const handleSearchSubmit = (event) => {
         event.preventDefault()
-        const query = event.target.searchTerm.value;
+        const query = event.target.searchTerm.value
         if (setSearchQuery) {
-            setSearchQuery(query);
+            setSearchQuery(query)
+        }
+    }
+
+    const handleSortChange = (event) => {
+        event.preventDefault()
+        const option = event.target.value
+        console.log(option)
+        if (setSortOption) {
+            setSortBy(option)
+            setSortOption(option)
         }
     }
 
@@ -22,11 +35,11 @@ export const Header = ({ setSearchQuery }) => {
                         </form>
                     </li>
                     <li>
-                        <select>
-                            <option>Sort by</option>
-                            <option>Title(A-Z)</option>
-                            <option>Release date</option>
-                            <option>Rating</option>
+                        <select value="selectOption" onChange={handleSortChange}>
+                            <option value="">{sortBy}</option>
+                            <option value="Title(A-Z)">Title(A-Z)</option>
+                            <option value="Release date">Release date</option>
+                            <option value="Rating">Rating</option>
                         </select>
                     </li>
                 </ul>
