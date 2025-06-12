@@ -1,7 +1,7 @@
 import "./Header.css"
 import { useState } from "react"
 
-export const Header = ({ setSearchQuery, setSortOption }) => {
+export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
     const [sortBy, setSortBy] = useState("Sort by")
 
     const handleSearchSubmit = (event) => {
@@ -18,12 +18,22 @@ export const Header = ({ setSearchQuery, setSortOption }) => {
     const handleSortChange = (event) => {
         event.preventDefault()
         const option = event.target.value
-        console.log(option)
         if (setSortOption) {
             setSortBy(option)
             setSortOption(option)
             // clear search query when sorting
             setSearchQuery("")
+        }
+    }
+
+    const handleClear = (event) => {
+        event.preventDefault()
+
+        if (setClear) {
+            setClear(true)
+            setSearchQuery("")
+            setSortOption("")
+            setSortBy("Sort by")
         }
     }
 
@@ -37,6 +47,7 @@ export const Header = ({ setSearchQuery, setSortOption }) => {
                         <form onSubmit={handleSearchSubmit}>
                             <input type="text" name="searchTerm" placeholder="Look up a movie..."/>
                             <button type="submit">Search</button>
+                            <button onClick={handleClear} name="clear">Clear</button>
                         </form>
                     </li>
                     <li>
