@@ -11,4 +11,8 @@
     margin: 20px 0;
     font-size: 1.2rem;
     color: #666;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

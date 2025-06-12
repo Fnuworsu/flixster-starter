@@ -3,6 +3,10 @@ header {
     padding-bottom: 40px;
     background-color: #5F8FB1;
     color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 ul {

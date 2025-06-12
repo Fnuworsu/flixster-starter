@@ -1,5 +1,15 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* main content area b/n header and footer */
+.App > *:not(header):not(footer) {
+  flex: 1;
+  min-height: 70vh;
+  padding: 20px 0;
 }
 
 .App-header {

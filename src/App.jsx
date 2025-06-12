@@ -9,11 +9,20 @@ import { Sort } from './components/Sort/Sort.jsx'
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState("")
+  const [clear, setClear] = useState(false)
+
+  if (clear) {
+    setTimeout(() => {
+      setClear(false);
+    }, 100);
+  }
 
   return (
     <div className="App">
-      <Header setSearchQuery={setSearchQuery} setSortOption={setSortOption} />
-      {searchQuery ? (
+      <Header setSearchQuery={setSearchQuery} setSortOption={setSortOption} setClear={setClear} />
+      {clear ? (
+        <MovieList key={Date.now()} />
+      ) : searchQuery ? (
         <Search searchQuery={searchQuery} sortOption={sortOption} />
       ) : sortOption ? (
         <Sort sortOption={sortOption} />
