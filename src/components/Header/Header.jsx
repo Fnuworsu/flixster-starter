@@ -3,16 +3,20 @@ import { useState } from "react"
 
 export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
     const [sortBy, setSortBy] = useState("Sort by")
+    const [searchTerm, setSearchTerm] = useState("")
 
     const handleSearchSubmit = (event) => {
         event.preventDefault()
-        const query = event.target.searchTerm.value
         if (setSearchQuery) {
-            setSearchQuery(query)
+            setSearchQuery(searchTerm)
             // clear sort option when searching
             setSortOption("")
             setSortBy("Sort by")
         }
+    }
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value)
     }
 
     const handleSortChange = (event) => {
@@ -34,6 +38,7 @@ export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
             setSearchQuery("")
             setSortOption("")
             setSortBy("Sort by")
+            setSearchTerm("")
         }
     }
 
@@ -45,7 +50,13 @@ export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
                 <ul>
                     <li>
                         <form onSubmit={handleSearchSubmit}>
-                            <input type="text" name="searchTerm" placeholder="Look up a movie..."/>
+                            <input
+                                type="text"
+                                name="searchTerm"
+                                placeholder="Look up a movie..."
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                            />
                             <button type="submit">Search</button>
                             <button onClick={handleClear} name="clear">Clear</button>
                         </form>
