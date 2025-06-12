@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../Movie/MovieCard";
 
 export const Sort = ({sortOption}) => {
-  const [sortResults, setSortResults] = useState([])
   const [movies, setMovies] = useState([])
   const apiKey = import.meta.env.VITE_API_KEY
   const URL = `https://api.themoviedb.org/3/movie/now_playing?&api_key=${apiKey}&page=1`
@@ -60,8 +59,6 @@ export const Sort = ({sortOption}) => {
         default:
             break;
     }
-
-    console.log(movies)
 
     return (
         <>
