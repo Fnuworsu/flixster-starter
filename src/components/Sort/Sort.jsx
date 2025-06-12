@@ -62,8 +62,6 @@ export const Sort = ({sortOption}) => {
             break;
     }
 
-    console.log(movies)
-
     return (
         <>
             {loadMovie()}
