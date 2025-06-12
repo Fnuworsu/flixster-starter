@@ -59,7 +59,6 @@ export const Search = ({searchQuery, sortOption}) => {
             return <div className="no-results">No movies found for "{searchQuery}"</div>
         }
 
-        // Filter out movies with zero ratings
         const filteredResults = searchResult.filter(res => res.vote_average > 0);
         if (searchQuery && filteredResults.length === 0) {
             return <div className="no-results">No movies with ratings found for "{searchQuery}"</div>

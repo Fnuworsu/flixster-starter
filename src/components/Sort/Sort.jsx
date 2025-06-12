@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../Movie/MovieCard";
 
 export const Sort = ({sortOption}) => {
-  /**
-   * sort by release_date, title, rating
-   */
   const [sortResults, setSortResults] = useState([])
   const [movies, setMovies] = useState([])
   const apiKey = import.meta.env.VITE_API_KEY
@@ -37,15 +34,15 @@ export const Sort = ({sortOption}) => {
         getMovies(URL)
     }, [sortOption])
 
-    // sort by release_date
+
     const sortByReleaseDate = () => {
         movies.sort((a,b) => new Date(a.release_date) - new Date(b.release_date))
     }
-    // sort by rating
+
     const sortByRating = () => {
         movies.sort((a,b) => b.vote_average - a.vote_average)
     }
-    // sort by title
+
     const sortByTitle = () => {
         movies.sort((a,b) => a.title.localeCompare(b.title))
     }
