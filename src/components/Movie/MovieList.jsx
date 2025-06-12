@@ -13,19 +13,39 @@ export const MovieList = () => {
     const [showModal, setShowModal] = useState(false)
     const [movieId, setMovieId] = useState(null)
     const [movieImageUrl, setMovieImageUrl] = useState("")
-    const [movieTitle, setMovieTitle] = useState("")
-    const [movieRating, setMovieRating] = useState(0)
+    const [movieOverview, setMovieOverview] = useState("")
+    const [movieGenre, setMovieGenre] = useState([])
+
+    const genre = [
+        {"id": 28, "name": "Action"},
+        {"id": 12, "name": "Adventure"},
+        {"id": 16, "name": "Animation"},
+        {"id": 35, "name": "Comedy"},
+        {"id": 80, "name": "Crime"},
+        {"id": 99, "name": "Documentary"},
+        {"id": 18, "name": "Drama"},
+        {"id": 10751, "name": "Family"},
+        {"id": 14, "name": "Fantasy"},
+        {"id": 36, "name": "History"},
+        {"id": 27, "name": "Horror"},
+        {"id": 10402, "name": "Music"},
+        {"id": 9648, "name": "Mystery"},
+        {"id": 10749, "name": "Romance"},
+        {"id": 878, "name": "Science Fiction"},
+        {"id": 10770, "name": "TV Movie"},
+        {"id": 53, "name": "Thriller"},
+        {"id": 10752, "name": "War"},
+        {"id": 37, "name": "Western"}
+    ]
 
     const modalImageBaseUrl = "https://image.tmdb.org/t/p/w500"
 
     const openModal = (movie) => {
-        console.log("Opening modal for movie:", movie);
         setMovieId(movie.id);
-        setMovieImageUrl(`${modalImageBaseUrl}${movie.poster_path}`);
-        setMovieTitle(movie.title);
-        setMovieRating(movie.vote_average);
+        setMovieImageUrl(`${modalImageBaseUrl}${movie.backdrop_path}`);
         setShowModal(true);
-        console.log("showModal set to:", true);
+        setMovieOverview(movie.overview);
+        setMovieGenre(genre.filter(genre => movie.genre_ids.includes(genre.id)).map(genre => "🌟 " + genre.name + " "))
     }
 
     const getMovies = async(url) => {
@@ -68,10 +88,10 @@ export const MovieList = () => {
             {showModal && (
                 <Modal
                     imageUrl={movieImageUrl}
-                    title={movieTitle}
-                    rating={movieRating}
                     onClose={() => setShowModal(false)}
                     movieId={movieId}
+                    overview={movieOverview}
+                    genre={movieGenre}
                 />
             )}
 
