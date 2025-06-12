@@ -9,6 +9,9 @@ export const Header = ({ setSearchQuery, setSortOption }) => {
         const query = event.target.searchTerm.value
         if (setSearchQuery) {
             setSearchQuery(query)
+            // Clear sort option when searching
+            setSortOption("")
+            setSortBy("Sort by")
         }
     }
 
@@ -19,6 +22,8 @@ export const Header = ({ setSearchQuery, setSortOption }) => {
         if (setSortOption) {
             setSortBy(option)
             setSortOption(option)
+            // Clear search query when sorting
+            setSearchQuery("")
         }
     }
 

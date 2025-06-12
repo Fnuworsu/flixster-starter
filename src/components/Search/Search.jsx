@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { MovieCard } from '../Movie/MovieCard.jsx'
 import './Search.css'
 
-export const Search = ({searchQuery}) => {
+export const Search = ({searchQuery, sortOption}) => {
     const [searchResult, setSearchResult] = useState([])
 
     const apiKey = import.meta.env.VITE_API_KEY
@@ -27,20 +27,49 @@ export const Search = ({searchQuery}) => {
         }
     }, [searchQuery])
 
+    const sortByReleaseDate = (results) => {
+        return [...results].sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
+    }
+
+    const sortByRating = (results) => {
+        return [...results].sort((a, b) => b.vote_average - a.vote_average);
+    }
+
+    const sortByTitle = (results) => {
+        return [...results].sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    const applySorting = (results) => {
+        if (!sortOption) return results;
+
+        switch (sortOption) {
+            case "Release date":
+                return sortByReleaseDate(results);
+            case "Rating":
+                return sortByRating(results);
+            case "Title(A-Z)":
+                return sortByTitle(results);
+            default:
+                return results;
+        }
+    }
+
     const loadSearchResults = () => {
         if (searchQuery && searchResult.length === 0) {
             return <div className="no-results">No movies found for "{searchQuery}"</div>
         }
 
         // Filter out movies with zero ratings
-        const filteredResults = searchResult.filter(res => res.vote_average > 0)
+        const filteredResults = searchResult.filter(res => res.vote_average > 0);
         if (searchQuery && filteredResults.length === 0) {
             return <div className="no-results">No movies with ratings found for "{searchQuery}"</div>
         }
 
+        const sortedResults = applySorting(filteredResults);
+
         return (
             <div className="search-result">
-                {searchQuery && filteredResults.map(res => (
+                {searchQuery && sortedResults.map(res => (
                     <MovieCard
                         key={res.id}
                         imageUrl={`${imageBaseUrl}${res.poster_path}`}

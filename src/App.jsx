@@ -13,9 +13,13 @@ const App = () => {
   return (
     <div className="App">
       <Header setSearchQuery={setSearchQuery} setSortOption={setSortOption} />
-      {searchQuery && !sortOption && <Search searchQuery={searchQuery}></Search>}
-      {!searchQuery && sortOption && <Sort sortOption={sortOption}></Sort>}
-      {!searchQuery && !sortOption && <MovieList></MovieList>}
+      {searchQuery ? (
+        <Search searchQuery={searchQuery} sortOption={sortOption} />
+      ) : sortOption ? (
+        <Sort sortOption={sortOption} />
+      ) : (
+        <MovieList />
+      )}
       <Footer />
     </div>
   )
