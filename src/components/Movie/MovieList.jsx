@@ -44,9 +44,6 @@ export const MovieList = () => {
         getMovies(url)
     }, [url, page])
 
-    // console.log(movies)
-    // console.log(movies)
-
     return (
         <>
         {loadMovie()}

@@ -37,15 +37,13 @@ export const Sort = ({sortOption}) => {
         getMovies(URL)
     }, [sortOption])
 
-    // sort by release_date
     const sortByReleaseDate = () => {
         movies.sort((a,b) => new Date(a.release_date) - new Date(b.release_date))
     }
-    // sort by rating
     const sortByRating = () => {
         movies.sort((a,b) => b.vote_average - a.vote_average)
     }
-    // sort by title
+
     const sortByTitle = () => {
         movies.sort((a,b) => a.title.localeCompare(b.title))
     }
