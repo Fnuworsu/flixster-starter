@@ -25,8 +25,6 @@ export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
         if (setSortOption) {
             setSortBy(option)
             setSortOption(option)
-            // clear search query when sorting
-            setSearchQuery("")
         }
     }
 
