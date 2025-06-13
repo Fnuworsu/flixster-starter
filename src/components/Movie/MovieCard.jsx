@@ -26,7 +26,7 @@ export const MovieCard = (props) => {
                 <img src={props.imageUrl} alt={props.title} className="movie-card-image"/>
                 <div className="movie-card-content">
                     <h3>{props.title}</h3>
-                    <p>Rating: {props.rating}</p>
+                    <p>Rating: {Math.round(props.rating * 100) / 100}</p>
                     <div onClick={changeLike}><p className="like">{like}</p></div>
                     <div onClick={changeWatch}><p className="watch">{watch}</p></div>
                 </div>
