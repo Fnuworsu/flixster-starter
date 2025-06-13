@@ -1,5 +1,7 @@
+import SideBar from "../Sidebar/Sidebar"
 import "./Header.css"
 import { useState } from "react"
+
 
 export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
     const [sortBy, setSortBy] = useState("Sort by")
