@@ -20,6 +20,7 @@ export const MovieList = () => {
     const [movieRating, setMovieRating] = useState(null)
     const [movieVoteCount, setMovieVoteCount] = useState(null)
     const [movieTrailerUrl, setMovieTrailerUrl] = useState("")
+    const [movieRuntime, setMovieRuntime] = useState("0 minutes")
 
     const genre = [
         {"id": 28, "name": "Action"},
@@ -64,17 +65,33 @@ export const MovieList = () => {
         }
     };
 
+    const fetchMovieRuntime = async (movieId) => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+            const data = await response.json()
+            const runtime = data.runtime
+
+            if (runtime) {
+                setMovieRuntime(`${runtime} minutes`)
+            }
+
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
     const openModal = (movie) => {
         setMovieId(movie.id)
-        setMovieImageUrl(`${modalImageBaseUrl}${movie.backdrop_path}`);
-        setMovieTitle(movie.title);
-        setShowModal(true);
-        setMovieOverview(movie.overview);
+        setMovieImageUrl(`${modalImageBaseUrl}${movie.backdrop_path}`)
+        setMovieTitle(movie.title)
+        setShowModal(true)
+        setMovieOverview(movie.overview)
         setMovieGenre(genre.filter(genre => movie.genre_ids.includes(genre.id)).map(genre => "🌟 " + genre.name + " "))
-        setMovieReleaseDate(movie.release_date);
-        setMovieRating(movie.vote_average);
-        setMovieVoteCount(movie.vote_count);
-        fetchMovieTrailer(movie.id);
+        setMovieReleaseDate(movie.release_date)
+        setMovieRating(movie.vote_average)
+        setMovieVoteCount(movie.vote_count)
+        fetchMovieTrailer(movie.id)
+        fetchMovieRuntime(movie.id)
     }
 
     const getMovies = async(url) => {
@@ -129,6 +146,7 @@ export const MovieList = () => {
                     rating={movieRating}
                     voteCount={movieVoteCount}
                     trailerUrl={movieTrailerUrl}
+                    runtime={movieRuntime}
                 />
             )}
 

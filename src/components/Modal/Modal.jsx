@@ -30,6 +30,11 @@ export const Modal = (props) => {
                             <span className="info-value">{props.releaseDate}</span>
                         </div>
 
+                        <div className="modal-info-item">
+                        <span className="info-label">Runtime</span>
+                        <span className="info-value">{props.runtime}</span>
+                        </div>
+
                         <div className="modal-info-item rating">
                             <span className="info-label">Rating</span>
                             <div className="info-value">
