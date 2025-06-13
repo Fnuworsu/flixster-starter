@@ -9,7 +9,6 @@ export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
         event.preventDefault()
         if (setSearchQuery) {
             setSearchQuery(searchTerm)
-            // clear sort option when searching
             setSortOption("")
             setSortBy("Sort by")
         }
@@ -41,34 +40,38 @@ export const Header = ({ setSearchQuery, setSortOption, setClear }) => {
     }
 
     return (
-        <header>
-            <h1>📺 Flixster 📽️</h1>
-            <br />
-            <nav className="nav-bar">
-                <ul>
-                    <li>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                name="searchTerm"
-                                placeholder="Look up a movie..."
-                                value={searchTerm}
-                                onChange={handleSearchChange}
-                            />
-                            <button type="submit">Search</button>
-                            <button onClick={handleClear} name="clear">Clear</button>
-                        </form>
-                    </li>
-                    <li>
-                        <select value="selectOption" onChange={handleSortChange}>
-                            <option value="">{sortBy}</option>
-                            <option value="Title(A-Z)">Title(A-Z)</option>
-                            <option value="Release date">Release date</option>
-                            <option value="Rating">Rating</option>
-                        </select>
-                    </li>
-                </ul>
-            </nav>
+        <header className="header">
+            <div>
+                <h1 className="title">Flixster </h1>
+            </div>
+            <div className="nav-bar">
+
+                <form onSubmit={handleSearchSubmit}>
+                    <div className="search">
+                        <input
+                            className="search-bar"
+                            type="text"
+                            name="searchTerm"
+                            placeholder="Look up a movie..."
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                        />
+                        <button className="search-button" type="submit">Search</button>
+                    </div>
+
+                    <button className="clear-button"onClick={handleClear} name="clear">Clear</button>
+                </form>
+            </div>
+            <div className="sort">
+                <select className="dropdown"value="selectOption" onChange={handleSortChange}>
+                    <option value="">{sortBy}</option>
+                    <option value="Title(A-Z)">Title(A-Z)</option>
+                    <option value="Release date">Release date</option>
+                    <option value="Rating">Rating</option>
+                </select>
+
+            </div>
+
         </header>
     )
 }

@@ -1,7 +1,15 @@
 .movie-list {
   display: flex;
+  gap: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #121212;
+  padding: 20px;
+}
 
+
+.load-more-btn {
+  border: 1px solid black;
+  border-radius: 14px;
 }

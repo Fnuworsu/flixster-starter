@@ -13,8 +13,13 @@ export const MovieList = () => {
     const [showModal, setShowModal] = useState(false)
     const [movieId, setMovieId] = useState(null)
     const [movieImageUrl, setMovieImageUrl] = useState("")
+    const [movieTitle, setMovieTitle] = useState("")
     const [movieOverview, setMovieOverview] = useState("")
     const [movieGenre, setMovieGenre] = useState([])
+    const [movieReleaseDate, setMovieReleaseDate] = useState("")
+    const [movieRating, setMovieRating] = useState(null)
+    const [movieVoteCount, setMovieVoteCount] = useState(null)
+    const [movieTrailerUrl, setMovieTrailerUrl] = useState("")
 
     const genre = [
         {"id": 28, "name": "Action"},
@@ -40,27 +45,52 @@ export const MovieList = () => {
 
     const modalImageBaseUrl = "https://image.tmdb.org/t/p/w500"
 
+    const fetchMovieTrailer = async (movieId) => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`)
+            const data = await response.json()
+
+            const trailer = data.results.find(video =>
+                video.type === "Trailer" && video.site === "YouTube") || data.results[0]
+
+            if (trailer) {
+                setMovieTrailerUrl(`https://www.youtube.com/embed/${trailer.key}`)
+            } else {
+                setMovieTrailerUrl("")
+            }
+        } catch (error) {
+            setMovieTrailerUrl("")
+            throw new Error(error)
+        }
+    };
+
     const openModal = (movie) => {
-        setMovieId(movie.id);
+        setMovieId(movie.id)
         setMovieImageUrl(`${modalImageBaseUrl}${movie.backdrop_path}`);
+        setMovieTitle(movie.title);
         setShowModal(true);
         setMovieOverview(movie.overview);
         setMovieGenre(genre.filter(genre => movie.genre_ids.includes(genre.id)).map(genre => "🌟 " + genre.name + " "))
+        setMovieReleaseDate(movie.release_date);
+        setMovieRating(movie.vote_average);
+        setMovieVoteCount(movie.vote_count);
+        fetchMovieTrailer(movie.id);
     }
 
     const getMovies = async(url) => {
         try {
             const response = await fetch(url)
             const data = await response.json()
+            let results = data.results
+
             if (page === 1) {
-                setMovies(data.results)
+                setMovies(results)
             } else {
-                setMovies(prevMovies => [...prevMovies, ...data.results])
+                setMovies(prevMovies => [...prevMovies, ...results])
             }
         } catch (error) {
             throw new Error(error)
         }
-
     }
 
     const loadMore = () => {
@@ -74,31 +104,39 @@ export const MovieList = () => {
     return (
         <>
             <div className="movie-list">
-                {movies.map(movie => (
-                    <MovieCard
-                        key={movie.id}
-                        imageUrl={`${imageBaseUrl}${movie.poster_path}`}
-                        title={movie.title}
-                        rating={movie.vote_average}
-                        onClick={() => openModal(movie)}
-                    />
-                ))}
+                {
+                    movies.map(movie => (
+                        <MovieCard
+                            key={movie.id + new Date().getMilliseconds()}
+                            id={movie.id}
+                            imageUrl={`${imageBaseUrl}${movie.poster_path}`}
+                            title={movie.title}
+                            rating={movie.vote_average}
+                            onClick={() => openModal(movie)}
+                        />
+                    ))}
             </div>
 
             {showModal && (
                 <Modal
                     imageUrl={movieImageUrl}
+                    title={movieTitle}
                     onClose={() => setShowModal(false)}
                     movieId={movieId}
                     overview={movieOverview}
                     genre={movieGenre}
+                    releaseDate={movieReleaseDate}
+                    rating={movieRating}
+                    voteCount={movieVoteCount}
+                    trailerUrl={movieTrailerUrl}
                 />
             )}
 
             <div>
-                <br />
                 <button className="load-more-btn" onClick={loadMore}>Load More</button>
-                <br /><br />
+                <br></br>
+                <br></br>
+
             </div>
         </>
     )
