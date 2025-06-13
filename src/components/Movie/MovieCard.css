@@ -61,7 +61,17 @@
   margin: 0 5px;
 }
 
+.like {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .like:hover, .watch:hover {
   transform: scale(1.2);
   color: #ff0000;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
 }

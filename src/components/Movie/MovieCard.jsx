@@ -27,8 +27,10 @@ export const MovieCard = (props) => {
                 <div className="movie-card-content">
                     <h3>{props.title}</h3>
                     <p>Rating: {Math.round(props.rating * 100) / 100}</p>
-                    <div onClick={changeLike}><p className="like">{like}</p></div>
-                    <div onClick={changeWatch}><p className="watch">{watch}</p></div>
+                    <div className="buttons">
+                        <p onClick={changeLike}className="like">{like}</p>
+                        <p onClick={changeWatch} className="watch">{watch}</p>
+                    </div>
                 </div>
             </div>
         </div>
