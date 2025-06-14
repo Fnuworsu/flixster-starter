@@ -12,7 +12,7 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    gap: 250px;
+    gap: 25px;
     align-items: center;
     margin: 0 auto;
     position: fixed;
@@ -85,4 +85,3 @@ select {
     width: 127px;
     height: 30px;
 }
-

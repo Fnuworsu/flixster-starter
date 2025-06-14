@@ -90,15 +90,15 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
   - [x] If the movie is already watched:
     - [x] Clicking on the visual element should mark the movie as *not* watched.
     - [x] There should be visual feedback (such as the eye turning a different color) to show that the movie has not been watched.
-- [ ] **Sidebar**
-  - [ ] The website includes a side navigation bar.
-  - [ ] The sidebar has three pages:
-    - [ ] Home
-    - [ ] Favorites
-    - [ ] Watched
-  - [ ] The Home page displays all current movies in a grid view, the search bar, and the sort movies drop-down.
-  - [ ] The Favorites page displays all favorited movies in a grid view.
-  - [ ] The Watched page displays all watched movies in a grid view.
+- [] **Sidebar**
+  - [] The website includes a side navigation bar.
+  - [] The sidebar has three pages:
+    - [] Home
+    - [] Favorites
+    - [] Watched
+  - [] The Home page displays all current movies in a grid view, the search bar, and the sort movies drop-down.
+  - [] The Favorites page displays all favorited movies in a grid view.
+  - [] The Watched page displays all watched movies in a grid view.
 
 ### Walkthrough Video
 
@@ -110,7 +110,7 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 

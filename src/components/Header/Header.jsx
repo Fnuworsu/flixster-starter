@@ -1,4 +1,3 @@
-import SideBar from "../Sidebar/Sidebar"
 import "./Header.css"
 import { useState } from "react"
 
